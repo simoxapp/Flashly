@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { Suspense, useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Alert, AlertDescription } from "@/components/ui/alert"
@@ -14,6 +14,14 @@ import type { Deck } from "@/lib/types"
 type StudyMode = "flip" | "multiple-choice" | "essay"
 
 export default function StudySessions() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <StudySessionsContent />
+    </Suspense>
+  )
+}
+
+function StudySessionsContent() {
   const searchParams = useSearchParams()
   const preSelectedDeckId = searchParams.get("deckId")
   const preSelectedMode = searchParams.get("mode") as StudyMode | null

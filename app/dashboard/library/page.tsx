@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { Suspense, useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -30,6 +30,14 @@ import { toast } from "sonner"
 import type { Deck } from "@/lib/types"
 
 export default function FlashcardLibrary() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <FlashcardLibraryContent />
+    </Suspense>
+  )
+}
+
+function FlashcardLibraryContent() {
   const searchParams = useSearchParams()
   const initialSearch = searchParams.get("search") || ""
 
