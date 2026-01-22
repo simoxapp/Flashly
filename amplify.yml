@@ -1,18 +1,27 @@
 version: 1
-frontend:
-  phases:
-    preBuild:
-      commands:
-        - nvm use 20
-        - npm install
-    build:
-      commands:
-        - npm run build
-  artifacts:
-    baseDirectory: .next
-    files:
-      - '**/*'
-  cache:
-    paths:
-      - .next/cache/**/*
-      - node_modules/**/*
+applications:
+  - frontend:
+      phases:
+        preBuild:
+          commands:
+            - nvm use 20
+            # Install dependencies without audit warnings
+            - npm install --legacy-peer-deps --no-audit
+            # Set up environment variables properly for Next.js build
+            - env | grep -e NEXT_PUBLIC_ > .env.production
+            - env | grep -v -e NEXT_PUBLIC_ >> .env.production.local
+            # Optional: Run audit check but don't fail build on warnings
+            - npm audit --audit-level=critical || echo "Audit warnings found but continuing build..."
+        build:
+          commands:
+            - npm run build
+      artifacts:
+        baseDirectory: .next
+        files:
+          - '**/*'
+        discard-paths: false
+      cache:
+        paths:
+          - node_modules/**/*
+          - .next/cache/**/*
+    appRoot: .
