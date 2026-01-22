@@ -4,7 +4,6 @@
   "engines": {
     "node": "20.x"
   },
-  "packageManager": "pnpm@9.15.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

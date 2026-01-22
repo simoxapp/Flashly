@@ -4,11 +4,10 @@ frontend:
     preBuild:
       commands:
         - nvm use 20
-        - npm install -g pnpm@latest
-        - pnpm install
+        - npm install
     build:
       commands:
-        - pnpm run build
+        - npm run build
   artifacts:
     baseDirectory: .next
     files:
