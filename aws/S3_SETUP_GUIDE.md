@@ -73,10 +73,10 @@ This allows you to recover accidentally deleted files.
 Add these environment variables to your `.env.local`:
 
 ```env
-AWS_REGION=us-east-1
-AWS_ACCESS_KEY_ID=your_access_key_id
-AWS_SECRET_ACCESS_KEY=your_secret_access_key
-AWS_S3_BUCKET_NAME=flasherstorage
+NEXT_PUBLIC_AWS_REGION=us-east-1
+NEXT_PUBLIC_AWS_ACCESS_KEY_ID=your_access_key_id
+NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY=your_secret_access_key
+NEXT_PUBLIC_AWS_S3_BUCKET_NAME=flasherstorage
 ```
 
 ## Bucket Structure (Auto-created by App)
@@ -125,7 +125,7 @@ To automatically delete old data:
 
 ### "Bucket not found" Error
 - Verify bucket name is exactly: `flasherstorage`
-- Check region matches `AWS_REGION` in `.env.local`
+- Check region matches `NEXT_PUBLIC_AWS_REGION` in `.env.local`
 
 ### "No such key" Error
 - This is normal for missing objects - handled by app gracefully

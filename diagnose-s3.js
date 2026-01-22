@@ -28,20 +28,20 @@ function loadEnv() {
 async function diagnose() {
     const env = loadEnv();
     console.log("Loaded Environment Variables:");
-    console.log("AWS_REGION:", env.AWS_REGION);
-    console.log("AWS_S3_BUCKET_NAME:", env.AWS_S3_BUCKET_NAME);
-    console.log("AWS_ACCESS_KEY_ID:", env.AWS_ACCESS_KEY_ID ? (env.AWS_ACCESS_KEY_ID.substring(0, 5) + '...') : 'MISSING');
+    console.log("NEXT_PUBLIC_AWS_REGION:", env.NEXT_PUBLIC_AWS_REGION);
+    console.log("NEXT_PUBLIC_AWS_S3_BUCKET_NAME:", env.NEXT_PUBLIC_AWS_S3_BUCKET_NAME);
+    console.log("NEXT_PUBLIC_AWS_ACCESS_KEY_ID:", env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID ? (env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID.substring(0, 5) + '...') : 'MISSING');
 
-    if (!env.AWS_REGION || !env.AWS_S3_BUCKET_NAME || !env.AWS_ACCESS_KEY_ID || !env.AWS_SECRET_ACCESS_KEY) {
+    if (!env.NEXT_PUBLIC_AWS_REGION || !env.NEXT_PUBLIC_AWS_S3_BUCKET_NAME || !env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID || !env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY) {
         console.error("Missing required AWS credentials in .env");
         return;
     }
 
     const s3 = new S3Client({
-        region: env.AWS_REGION,
+        region: env.NEXT_PUBLIC_AWS_REGION,
         credentials: {
-            accessKeyId: env.AWS_ACCESS_KEY_ID,
-            secretAccessKey: env.AWS_SECRET_ACCESS_KEY,
+            accessKeyId: env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID,
+            secretAccessKey: env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY,
         }
     });
 
@@ -50,7 +50,7 @@ async function diagnose() {
         const result = await s3.send(new ListBucketsCommand({}));
         console.log("Success! Buckets found:", result.Buckets.map(b => b.Name));
 
-        const targetBucket = env.AWS_S3_BUCKET_NAME;
+        const targetBucket = env.NEXT_PUBLIC_AWS_S3_BUCKET_NAME;
         const bucketExists = result.Buckets.find(b => b.Name === targetBucket);
 
         if (!bucketExists) {

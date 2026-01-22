@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
                 key,
                 name: originalName,
                 id: filenameWithUUID.split("-")[0],
-                url: `https://${process.env.AWS_S3_BUCKET_NAME}.s3.amazonaws.com/${key}`
+                url: `https://${process.env.NEXT_PUBLIC_AWS_S3_BUCKET_NAME}.s3.amazonaws.com/${key}`
             }
         })
 

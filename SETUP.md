@@ -32,10 +32,10 @@ pnpm install
 
 4. Update your `.env.local`:
    ```
-   AWS_REGION=us-east-1
-   AWS_ACCESS_KEY_ID=your_access_key_here
-   AWS_SECRET_ACCESS_KEY=your_secret_key_here
-   AWS_S3_BUCKET_NAME=your_bucket_name_here
+   NEXT_PUBLIC_AWS_REGION=us-east-1
+   NEXT_PUBLIC_AWS_ACCESS_KEY_ID=your_access_key_here
+   NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY=your_secret_key_here
+   NEXT_PUBLIC_AWS_S3_BUCKET_NAME=your_bucket_name_here
    ```
 
 ### 2.2 Clerk Authentication
@@ -113,10 +113,10 @@ Follow the prompts and add environment variables when prompted.
 | `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Yes | Clerk public key |
 | `CLERK_SECRET_KEY` | Yes | Clerk secret key |
 | `GEMINI_API_KEY` | Yes | Google Gemini API key |
-| `AWS_REGION` | Yes | AWS region (default: us-east-1) |
-| `AWS_ACCESS_KEY_ID` | Yes | AWS IAM access key |
-| `AWS_SECRET_ACCESS_KEY` | Yes | AWS IAM secret key |
-| `AWS_S3_BUCKET_NAME` | Yes | S3 bucket name |
+| `NEXT_PUBLIC_AWS_REGION` | Yes | AWS region (default: us-east-1) |
+| `NEXT_PUBLIC_AWS_ACCESS_KEY_ID` | Yes | AWS IAM access key |
+| `NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY` | Yes | AWS IAM secret key |
+| `NEXT_PUBLIC_AWS_S3_BUCKET_NAME` | Yes | S3 bucket name |
 
 ## API Routes
 
@@ -145,7 +145,7 @@ Follow the prompts and add environment variables when prompted.
 ## Troubleshooting
 
 ### "Bucket name not configured"
-- Check that `AWS_S3_BUCKET_NAME` is set in `.env.local`
+- Check that `NEXT_PUBLIC_AWS_S3_BUCKET_NAME` is set in `.env.local`
 - Bucket name should not include spaces or special characters
 
 ### "Gemini API key not configured"
